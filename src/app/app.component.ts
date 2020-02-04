@@ -13,29 +13,36 @@ export class AppComponent {
     contacts: Contact[];
     selectedContact:Contact;
     copySelectedContact:Contact;
-
+    currentIndex:number;
+    
     constructor(service: Service) {
         this.contacts = service.getContacts();
-    }
+        }
 
-    contactClicked(contact){
+    contactClicked(contact,index){
         this.selectedContact = contact;
-    }
+        this.currentIndex = index;
+        }
 
-    getKeys(){
+        getKeys(){
         return Object.keys(this.selectedContact);
     }
 
     updateContactKey(key,value){
         this.copySelectedContact[key] = value;
+    
     }
 
     assignCopy(){
         this.copySelectedContact = {...this.selectedContact};
+        
     }
 
     saveChanges(){
         this.selectedContact = {...this.copySelectedContact};
+        this.contacts[this.currentIndex] = this.selectedContact;
+        
+        
     }
 }
 

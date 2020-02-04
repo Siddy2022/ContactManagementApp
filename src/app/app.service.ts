@@ -47,4 +47,5 @@ export class Service {
     getContacts() : Contact[] {
         return contacts_file_json;
     }
+
 }
